@@ -1,4 +1,5 @@
 import Banner from "@/assets/images/banners/hero.svg";
+import { Button } from "../Button";
 export const Hero = () => {
     return (
         <div className="container">
@@ -16,8 +17,10 @@ export const Hero = () => {
                             Transforme qualquer passo em presença
                         </h1>
                         <div className="flex gap-3.5">
-                            <button>Ver modelos</button>
-                            <button>Comprar</button>
+                            <Button variant="secondary" size="sm">
+                                Ver Modelos
+                            </Button>
+                            <Button>Comprar</Button>
                         </div>
                     </div>
                 </div>
