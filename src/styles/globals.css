@@ -41,6 +41,11 @@
     font-style: normal;
     font-display: swap;
 }
+@utility container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
 
 body {
     font-family: var(--font-display);
