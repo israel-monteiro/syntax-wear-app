@@ -1,21 +1,21 @@
-import { Categories } from "./components/categories";
-import { Footer } from "./components/Footer";
-import { Gallery } from "./components/Gallery";
-import { Header } from "./components/Header";
-import { Hero } from "./components/Hero";
+// Importa os componentes e funções necessários para configuração do roteamento do TanStack Router
+import { RouterProvider, createRouter } from "@tanstack/react-router";
+// Importa a árvore de rotas que foi gerada automaticamente a partir da estrutura de arquivos
+import { routeTree } from "./router-tree-gen";
 
-function App() {
-    return (
-        <>
-            <Header />
-            <main className="py-10">
-                <Hero />
-                <Categories/>
-                <Gallery/>
-            </main>
-            <Footer/>
-        </>
-    );
+// Cria e configura a instância global do roteador passando a árvore de rotas do projeto
+const router = createRouter({ routeTree });
+
+// Registra a instância do roteador no próprio módulo do TanStack Router
+// Isso habilita segurança de tipos (Type Safety) forte ao navegar pelas rotas na aplicação
+declare module "@tanstack/react-router" {
+    interface Register {
+        router: typeof router;
+    }
 }
 
+function App() {
+    return <RouterProvider router={router}/>
+}
 export default App;
+
