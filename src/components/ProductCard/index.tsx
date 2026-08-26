@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { MdAddShoppingCart } from "react-icons/md";
 import type { Product } from "../Interfaces/product";
 
+
 interface ProductCardProps {
     product: Product;
 }
@@ -9,7 +10,8 @@ interface ProductCardProps {
 export const ProductCard = ({product}: ProductCardProps) => {
     return (
         <div className="bg-white rounded-2xl shadow-md">
-            <Link to="/products">
+            <Link to="/products/$productId" params={
+                { productId: String(product.id) }}>
                 <img
                     src={product.image}
                     alt={product.name}
