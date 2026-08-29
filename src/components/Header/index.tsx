@@ -1,7 +1,6 @@
 import Logo from "@/assets/images/logo/logo.svg";
 import IconUser from "@/assets/images/icons/icon-user.svg";
 import IconAbout from "@/assets/images/icons/icon-about.svg";
-import IconCart from "@/assets/images/icons/icon-cart.svg";
 import { Link } from "@tanstack/react-router";
 import { ShoppingCart } from "../ShoppingCart";
 

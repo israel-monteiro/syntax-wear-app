@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CartContext } from "./CartContext";
 import type { Product } from "../components/Interfaces/product";
 
@@ -9,8 +9,18 @@ interface CartProviderProps {
 export interface ProductCart extends Product {
     quantity: number;
 }
+
+const localStoregeKey = "@SyntaxWear:cart";
+
 export const CartProvider = ({ children }: CartProviderProps) => {
-    const [cart, setCart] = useState<ProductCart[]>([]);
+    const [cart, setCart] = useState<ProductCart[]>(() => {
+        const cartFromLocalStorage = localStorage.getItem(localStoregeKey);
+        return cartFromLocalStorage !== null ? JSON.parse(cartFromLocalStorage) : [];
+    });
+
+    useEffect(() => {
+        localStorage.setItem(localStoregeKey, JSON.stringify(cart));
+    }, [cart]);
 
     function addToCart(product: Product): void {
         const productExistsInCart = cart.find((itemInCart) => itemInCart.id === product.id);
@@ -52,5 +62,9 @@ export const CartProvider = ({ children }: CartProviderProps) => {
         setCart(newCart);
     }
 
-    return <CartContext.Provider value={{ cart, addToCart, removeToCart, incrementInCart, decrementInCart }}>{children}</CartContext.Provider>;
+    return (
+        <CartContext.Provider value={{ cart, addToCart, removeToCart, incrementInCart, decrementInCart }}>
+            {children}
+        </CartContext.Provider>
+    );
 };
