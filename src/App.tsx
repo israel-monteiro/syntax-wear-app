@@ -2,6 +2,7 @@
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 // Importa a árvore de rotas que foi gerada automaticamente a partir da estrutura de arquivos
 import { routeTree } from "./router-tree-gen";
+import { CartProvider } from "./contexts/CartProvider";
 
 // Cria e configura a instância global do roteador passando a árvore de rotas do projeto
 const router = createRouter({ routeTree });
@@ -15,7 +16,11 @@ declare module "@tanstack/react-router" {
 }
 
 function App() {
-    return <RouterProvider router={router}/>
+    return (
+        <CartProvider>
+            <RouterProvider router={router} />
+        </CartProvider>
+    )
 }
 export default App;
 

@@ -1,0 +1,56 @@
+import { useState } from "react";
+import { CartContext } from "./CartContext";
+import type { Product } from "../components/Interfaces/product";
+
+interface CartProviderProps {
+    children: React.ReactNode;
+}
+
+export interface ProductCart extends Product {
+    quantity: number;
+}
+export const CartProvider = ({ children }: CartProviderProps) => {
+    const [cart, setCart] = useState<ProductCart[]>([]);
+
+    function addToCart(product: Product): void {
+        const productExistsInCart = cart.find((itemInCart) => itemInCart.id === product.id);
+
+        let newCart;
+
+        if (productExistsInCart) {
+            newCart = cart.map((itemInCart) =>
+                itemInCart.id === product.id ? { ...itemInCart, quantity: itemInCart.quantity + 1 } : itemInCart,
+            );
+        } else {
+            newCart = [...cart, { ...product, quantity: 1 }];
+        }
+        setCart(newCart);
+    }
+
+    function removeToCart(productId: number): void {
+        setCart(cart.filter((itemInCart) => itemInCart.id !== productId));
+    }
+
+    function incrementInCart(product: ProductCart): void {
+        updateProductQuantity(product, product.quantity + 1);
+    }
+    function decrementInCart(product: ProductCart): void {
+        updateProductQuantity(product, product.quantity - 1);
+    }
+
+    function updateProductQuantity(product: ProductCart, newQuantity: number): void {
+        if (newQuantity <= 0) return;
+
+        const productExistsInCart = cart.find((itemInCart) => itemInCart.id === product.id);
+
+        if (!productExistsInCart) return;
+
+        const newCart = cart.map((itemInCart) =>
+            itemInCart.id === product.id ? { ...itemInCart, quantity: newQuantity } : itemInCart,
+        );
+
+        setCart(newCart);
+    }
+
+    return <CartContext.Provider value={{ cart, addToCart, removeToCart, incrementInCart, decrementInCart }}>{children}</CartContext.Provider>;
+};
