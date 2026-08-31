@@ -1,6 +1,5 @@
 import Logo from "@/assets/images/logo/logo.svg";
 import IconUser from "@/assets/images/icons/icon-user.svg";
-import IconAbout from "@/assets/images/icons/icon-about.svg";
 import { Link } from "@tanstack/react-router";
 import { ShoppingCart } from "../ShoppingCart";
 import { MenuMobile } from "../MenuMobile";
@@ -49,11 +48,6 @@ export const Header = () => {
                             <li className="hidden lg:block">
                                 <Link to="/sign-up">
                                     <img src={IconUser} alt="Icone de login" />
-                                </Link>
-                            </li>
-                            <li className="hidden lg:block " >
-                                <Link to="/about">
-                                    <img src={IconAbout} alt="Icone de sobre" />
                                 </Link>
                             </li>
                             <li className="flex">
