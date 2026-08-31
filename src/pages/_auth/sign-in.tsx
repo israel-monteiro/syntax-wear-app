@@ -6,6 +6,9 @@ import GoogleIcon from "../../assets/images/icons/google-icon.png";
 
 export const Route = createFileRoute("/_auth/sign-in")({
     component: RouteComponent,
+    head: () => ({
+        meta: [{ title: "Login - SyntaxWear" }],
+    }),
 });
 
 function RouteComponent() {
@@ -28,7 +31,7 @@ function RouteComponent() {
                     <p className=" text-gray-600 mt-3.5 text-center">
                         Ainda não possui uma conta?
                         <Link to="/sign-up" className="text-[#5433EB] hover:underline ml-1">
-                             Cadastre-se
+                            Cadastre-se
                         </Link>
                     </p>
                 </div>

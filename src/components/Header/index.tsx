@@ -47,16 +47,16 @@ export const Header = () => {
                                 <MenuMobile navLinks={navLinks} />
                             </li>
                             <li className="hidden lg:block">
-                                <a href="#">
+                                <Link to="/sign-up">
                                     <img src={IconUser} alt="Icone de login" />
-                                </a>
+                                </Link>
                             </li>
-                            <li className="hidden lg:block">
+                            <li className="hidden lg:block " >
                                 <Link to="/about">
                                     <img src={IconAbout} alt="Icone de sobre" />
                                 </Link>
                             </li>
-                            <li>
+                            <li className="flex">
                                 <ShoppingCart />
                             </li>
                         </ul>

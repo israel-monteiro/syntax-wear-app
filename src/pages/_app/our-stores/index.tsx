@@ -5,6 +5,9 @@ import OurStoresImg2 from "@/assets/images/banners/our-stores/loja-2.png";
 
 export const Route = createFileRoute("/_app/our-stores/")({
     component: RouteComponent,
+    head: () => ({
+        meta: [{ title: "Nossas lojas - SyntaxWear" }],
+    }),
 });
 
 function RouteComponent() {
@@ -53,7 +56,7 @@ function RouteComponent() {
                                 Conte com dicas de estilo, sugestões exclusivas e suporte personalizado de quem
                                 realmente entende de moda.
                             </p>
-                        </div>  
+                        </div>
                     </div>
                 </section>
             </div>
