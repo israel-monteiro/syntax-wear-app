@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CartContext } from "./CartContext";
-import type { Product } from "../components/Interfaces/product";
+import type { Product } from "../Interfaces/product";
 
 interface CartProviderProps {
     children: React.ReactNode;

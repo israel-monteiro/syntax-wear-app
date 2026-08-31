@@ -14,7 +14,14 @@ function RouteComponent() {
     const filteredProduct = products.find((product) => product.id === Number(productId));
     const { addToCart } = useContext(CartContext);
 
-    if (!filteredProduct) return;
+    if (!filteredProduct)
+        return (
+            <section className="container mb-10 pt-44 md:pt-54 pb-10 md:px-10 text-black min-h-[80vh] flex flex-col justify-center items-center">
+                <h1 className="text-3xl font-bold mb-4">Produto não encontrado</h1>
+                <p className="mb-6">O produto que você está procurando não existe ou foi removido.</p>
+                <Link to="/products" className="text-accent hover:text-accent-hover underline">Voltar para produtos</Link>
+            </section>
+        );
 
     const originalPrice = filteredProduct?.price ?? 0;
     const discountedPrice = originalPrice * 0.9;
@@ -45,7 +52,7 @@ function RouteComponent() {
                     <div className="mb-3">
                         <p className="text-sm">Calcular o prazo de entrega</p>
 
-                        <CEPForm/>
+                        <CEPForm />
                     </div>
 
                     <button
