@@ -1,8 +1,10 @@
 import Logo from "@/assets/images/logo/logo.svg";
 import IconUser from "@/assets/images/icons/icon-user.svg";
 import { Link } from "@tanstack/react-router";
-import { ShoppingCart } from "../ShoppingCart";
 import { MenuMobile } from "../MenuMobile";
+import { CartButton } from "../CartButton";
+import { CartDrawer } from "../CartDrawer";
+import { useState } from "react";
 
 export interface NavLink {
     name: string;
@@ -16,6 +18,8 @@ const navLinks: NavLink[] = [
 ];
 
 export const Header = () => {
+    const [cartIsOpen, setCartIsOpen] = useState<boolean>(false);
+
     return (
         <div className="relative">
             <header className="fixed top-4 left-0 right-0 z-10 mx-10">
@@ -50,13 +54,14 @@ export const Header = () => {
                                     <img src={IconUser} alt="Icone de login" />
                                 </Link>
                             </li>
-                            <li className="flex">
-                                <ShoppingCart />
+                            <li>
+                                <CartButton onClick={() => setCartIsOpen(true)}/>
                             </li>
                         </ul>
                     </nav>
                 </div>
             </header>
+            <CartDrawer isOpen={cartIsOpen} onClose={() => setCartIsOpen(false)} />
         </div>
     );
 };
