@@ -3,6 +3,7 @@ import { Hero } from "../../components/Hero";
 import { Categories } from "../../components/Categories";
 import { Gallery } from "../../components/Gallery";
 
+
 export const Route = createFileRoute("/_app/")({
     component: RouteComponent,
     
